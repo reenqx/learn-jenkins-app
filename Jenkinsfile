@@ -1,8 +1,5 @@
-Jenkinsfile
- 
 pipeline {
     agent any
- 
     stages {
         stage('with Docker') {
             agent{
