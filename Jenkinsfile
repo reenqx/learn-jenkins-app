@@ -20,14 +20,5 @@ pipeline {
                 '''
             }
         }
-        stage('without Docker') {
-            steps {
-                sh '''
-                    echo "without docker"
-                    touch "without-container.txt"
-                '''
-            }
-        }
-       
     }
 }
