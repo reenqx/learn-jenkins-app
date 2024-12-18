@@ -3,10 +3,9 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent{
-                docker{
+            agent {
+                docker {
                     image 'node:18-alpine'
-                    reuseNode true
                 }
             }
             steps {
@@ -19,28 +18,24 @@ pipeline {
                     ls -la
                 '''
             }
-
         }
-        stage('Test'){
-            agent{
-                docker{
+        stage('Test') {
+            agent {
+                docker {
                     image 'node:18-alpine'
-                    reuseNode true
                 }
             }
-
             steps {
-                sh'''
+                sh '''
                     test -f build/index.html
                     npm test
                 '''
             }
         }
-        stage('Deploy'){
+        stage('Deploy') {
             agent {
                 docker {
                     image 'node:18-alpine'
-                    reuseNode true
                 }
             }
             steps {
@@ -50,11 +45,11 @@ pipeline {
                 '''
             }
         }
-
     }
+
     post {
         always {
-            junit 'test-results/junit.xml'
+            junit 'test-results/junit.xml'  // ตรวจสอบว่าไฟล์นี้ถูกสร้างขึ้นจริง
         }
     }
 }
