@@ -19,6 +19,7 @@ pipeline {
                     ls -la
                 '''
             }
+
         }
         stage('Test'){
             agent{
@@ -35,6 +36,16 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy'){
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+        }
+        
     }
     post {
         always {
