@@ -43,6 +43,13 @@ pipeline {
                     reuseNode true
                 }
             }
+            steps {
+                sh '''
+                    ls -la
+                    node --version
+                    npm install netlify-cli -g
+                    '''
+            }
         }
 
     }
